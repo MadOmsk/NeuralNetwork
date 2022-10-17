@@ -10,6 +10,10 @@
         {
             NeuronType = type;
             Neurons = neurons;
+            foreach (var neuron in neurons)
+            {
+                neuron.Layer = this;
+            }
         }
 
         public List<double> GetSignals()

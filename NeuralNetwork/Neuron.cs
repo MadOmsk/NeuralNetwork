@@ -4,12 +4,12 @@
     {
         public List<double> Weights { get; }
         public double Output { get; private set; }
+        public Layer Layer { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="inputCount">Количество входящих нейронов</param>
-        /// <param name="neuronType">Тип нейрона</param>
         public Neuron(int inputCount)
         {
             Weights = new List<double>();
@@ -27,7 +27,10 @@
             {
                 sum += inputs[i] * Weights[i];
             }
-            return Sigmoid(sum);
+            if (Layer.NeuronType != NeuronType.Input)
+                return Sigmoid(sum);
+            else
+                return sum;
         }
 
         /// <summary>
